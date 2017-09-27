@@ -1,0 +1,304 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>reveal.js</title>
+
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/black.css">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+</head>
+<body>
+<div class="reveal">
+    <div class="slides">
+        <section>
+            Hi, I'm Dan.
+        </section>
+        <section>
+            <h2>Automation</h2>
+
+            <p>
+                The Greatest Reason to Learn to Code,
+            </p>
+
+            <p>
+                That You Never Knew.
+            </p>
+        </section>
+        <section>
+            <img src="https://image.slidesharecdn.com/thinklikeaprogrammer-140327123849-phpapp01/95/think-like-a-programmer-38-638.jpg?cb=1395924129"
+                 alt="Laziness">
+        </section>
+        <section>
+            <img src="https://qph.ec.quoracdn.net/main-qimg-3289068633a342369f8e9319609f5762-c"
+                 alt="Bill Gates">
+        </section>
+        <section>
+            <img src="https://qph.ec.quoracdn.net/main-qimg-7d574c8e85fb7ae0149d817371cb30d2" alt="Not Quite">
+        </section>
+        <section>
+            It's really about efficiency.
+        </section>
+        <section>
+            <img src="https://derflounder.files.wordpress.com/2013/05/geekrepetitivegraph.png"
+                 alt="Geeks vs Non-Geeks">
+        </section>
+        <section>
+            <p>Where to start?</p>
+            <h4>Command Line Interface (cli)</h4>
+
+            <p style="font-size: 25px;">
+                Are you familar/comfortable with<br> moving around the command line?
+            </p>
+        </section>
+        <section>
+            <p>Commands are simple programs that <br> usually only have one job:</p>
+            <ul>
+                <li><code class="solo-code">ls</code> - List Files and Directories</li>
+                <li><code class="solo-code">cd</code> - Change Directory</li>
+                <li><code class="solo-code">mkdir</code> - Make a New Directory</li>
+                <li><code class="solo-code">rm</code> - Remove a File</li>
+                <li><code class="solo-code">rmdir</code> - Remove an Empty Directory</li>
+            </ul>
+        </section>
+        <section>
+            <h3>Terminology</h3>
+            <br>
+            <code class="solo-code">$ command -option argument ...</code>
+            <br><br>
+            <ul>
+                <li>command/program</li>
+                <li>option/flag/switch</li>
+                <li>argument</li>
+            </ul>
+        </section>
+        <section>
+            I use <code class="solo-code">ls</code> all the time.
+            <br>
+
+            <p>However the output doesn't look like a list.</p>
+        </section>
+        <section>
+            Try <br> <code class="solo-code">ls -1</code>
+
+            <p style="font-size: 25px;">
+                It's a one (1).
+            </p>
+        </section>
+        <section>
+            First level of laziness/impatience: command shortcuts.
+            <p style="font-size: 25px;">There's a program for that (<code class="solo-code">alias</code>)</p>
+        </section>
+        <section>
+            <code class="solo-code">$ alias l1='ls -1'</code>
+        </section>
+        <section>
+            Open a new terminal and try <code class="solo-code">l1</code>
+        </section>
+        <section>
+            <p class="filename">.bashrc</p>
+            <pre><code class="bash">
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+
+### Added by the Heroku Toolbelt
+export PATH="/usr/local/heroku/bin:$PATH"
+
+export CLICOLOR=1
+export LSCOLORS=ExFxBxDxCxegedabagacad
+
+alias ll="ls -lhGF"
+alias la="ls -lahGF"
+
+mkcd(){
+mkdir "$1" && cd "$1"
+}
+
+rmkcd(){
+rm -r "$1"
+mkcd "$1"
+}
+
+cdmkcd(){
+local fullfolder=$(pwd)
+local folder=$(basename $fullfolder)
+cd ..
+rmkcd $folder
+}
+
+yogo(){
+cdmkcd
+npm install ~/code/devservices-generators/$1-generator/
+yo r1-$1
+}
+
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+
+
+# tabtab source for yo package
+# uninstall by removing these lines or running `tabtab uninstall yo`
+[ -f /usr/local/lib/node_modules/yo/node_modules/tabtab/.completions/yo.bash ] && .
+/usr/local/lib/node_modules/yo/node_modules/tabtab/.completions/yo.bash
+
+source ~/git-completion.bash
+            </code></pre>
+        </section>
+        <section>
+            <p class="filename">My <code class="solo-code">ls</code> options</p>
+            <pre><code class="bash">
+                alias ll="ls -lhGF"
+                alias la="ls -lahGF"
+            </code></pre>
+        </section>
+        <section>
+            <p class="filename">My <code class="solo-code">ls</code> Options</p>
+            <ul>
+                <li><code class="solo-code">a</code> - All files including hidden files (files starting with a dot '.')
+                </li>
+                <li><code class="solo-codo">l</code> - Long format</li>
+                <li><code class="solo-code">h</code> - Human readable file size</li>
+                <li><code class="solo-code">G</code> - Show group owner</li>
+                <li><code class="solo-code">F</code> - Append file indicator to name, e.g. * to executables and / to directories</li>
+            </ul>
+        </section>
+        <section>
+            <p>Let's go to your <code>.bashrc</code> file to make some additions.</p>
+            <pre><code>
+      $ cd ~
+      $ vi .bashrc
+            </code></pre>
+            <p style="font-size: 25px;">You can use another editor besides vi for this file.</p>
+        </section>
+        <section>
+            <p>Load the file in to your current evironment</p>
+            <pre><code class="bash">
+                $ source .bashrc
+            </code></pre>
+            <p style="font-size: 25px;">We have to do this now because we've already loaded the shell once and ran the file. We need to tell it manually that we've changed it. After this it will load for each new terminal.</p>
+        </section>
+        <section>
+            <h4>Next Level</h4>
+
+            <p>
+                Command line programs with arguments
+            </p>
+        </section>
+        <section>
+            <p class="filename">Making and Changing into Directory</p>
+            <pre><code class="bash">
+        mkcd(){
+            mkdir "$1" && cd "$1"
+        }
+            </code></pre>
+        </section>
+        <section>
+            <h3>Your Task</h3>
+
+            <p>Write a new program that will remove a directory and recreate it.</p>
+
+            <p>This is the "oops, let's try that again" program.</p>
+
+            <p style="font-size: 25px;">It should have a new name and take in an argument for the directory you want to remove</p>
+        </section>
+        <section>
+            <h3>Other Ideas?</h3>
+
+            <p>What are tasks that you do over an over again?</p>
+            <ul>
+                <li>Git commands</li>
+                <li>File manipulation</li>
+                <li>Improve Readability</li>
+                <li>Others?</li>
+            </ul>
+        </section>
+        <section>
+            <h4>Remember the Trade Offs</h4>
+            <img src="https://derflounder.files.wordpress.com/2013/05/geekrepetitivegraph.png"
+                 alt="Geeks vs Non-Geeks" style="height: 300px;">
+
+            <p>
+                Want to make sure that the task is big enough or happen often enough that it streamlines your work or
+                your
+                thought process to beat the investment of time to automate the task.
+            </p>
+        </section>
+        <section>
+            <h4>Questions?</h4>
+        </section>
+        <section>
+            <h4>Other efficiency ideas</h4>
+            <ul>
+                <li>Desktop and Organization of Windows</li>
+                <li>Browser Tasks and Bookmarklets</li>
+                <ul>
+                    <li>Automatically fill out a form</li>
+                    <li>Go to the top of a page</li>
+                </ul>
+                <li>Your Code Editor & Short Cuts</li>
+                <ul>
+                    <li>Emmet for HTML Layout</li>
+                    <li>Reformatting Code</li>
+                    <li>Merging Conflicts</li>
+                    <li>Diff Tools</li>
+                </ul>
+            </ul>
+        </section>
+        <section>
+            <p class="filename">bookmarklet example</p>
+            <pre><code class="javascript">
+javascript:(
+    function removeStyling() {
+        var elements = ['div.width-h', 'div.f-left', 'div.comment_box_h_main', 'div.cm_cnt', 'div.b-player-panel', 'form.adv-sms-fixed', 'div.headtbl', 't_hs', 'div.fb_iframe_widget', 'div.js-ab-saambaa'];
+        var bodyAttr = ['bgcolor', 'background'];
+        var bgElements = ['body', 'div.page-wrap', 'div.page_border'];
+        elements.forEach(function (elem) {
+            $(elem).remove();
+        });
+        /* heelo */
+        bodyAttr.forEach(function (attr) {
+            $('body').removeAttr(attr);
+        });
+        bgElements.forEach(function (elem) {
+            $(elem).css('background', 'transparent');
+        });
+        $('div.page_border').css('border', 'none');
+})();
+            </code></pre>
+        </section>
+    </div>
+</div>
+
+<script src="lib/js/head.min.js"></script>
+<script src="js/reveal.js"></script>
+
+<script>
+    // More info about config & dependencies:
+    // - https://github.com/hakimel/reveal.js#configuration
+    // - https://github.com/hakimel/reveal.js#dependencies
+    Reveal.initialize({
+        dependencies: [
+            {src: 'plugin/markdown/marked.js'},
+            {src: 'plugin/markdown/markdown.js'},
+            {src: 'plugin/notes/notes.js', async: true},
+            {
+                src: 'plugin/highlight/highlight.js', async: true, callback: function () {
+                hljs.initHighlightingOnLoad();
+            }
+            }
+        ]
+    });
+</script>
+</body>
+</html>
